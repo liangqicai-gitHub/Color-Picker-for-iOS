@@ -89,14 +89,14 @@ internal class BrightnessSlider: UIView {
     }
 
     private func updateShadowColor() {
-        let bgColor: UIColor
-        if #available(iOS 13.0, *) {
-            bgColor = UIColor.systemBackground
-        } else {
-            bgColor = UIColor.white
-        }
-        topShadowLayer.colors = [bgColor.cgColor, bgColor.withAlphaComponent(0).cgColor]
-        bottomShadowLayer.colors = [bgColor.cgColor, bgColor.withAlphaComponent(0).cgColor]
+//        let bgColor: UIColor
+//        if #available(iOS 13.0, *) {
+//            bgColor = UIColor.systemBackground
+//        } else {
+//            bgColor = UIColor.white
+//        }
+//        topShadowLayer.colors = [bgColor.cgColor, bgColor.withAlphaComponent(0).cgColor]
+//        bottomShadowLayer.colors = [bgColor.cgColor, bgColor.withAlphaComponent(0).cgColor]
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -141,6 +141,11 @@ internal class BrightnessSlider: UIView {
             scale.backgroundColor = color.uiColor.cgColor
         }
         CATransaction.commit()
+        
+        let topcolor = hsColor.with(brightness: 1).uiColor
+        let bottomcolor = hsColor.with(brightness: 0.01).uiColor
+        topShadowLayer.colors = [topcolor.cgColor, topcolor.withAlphaComponent(0).cgColor]
+        bottomShadowLayer.colors = [bottomcolor.cgColor, bottomcolor.withAlphaComponent(0).cgColor]
     }
 
     func set(brightness: CGFloat) {
